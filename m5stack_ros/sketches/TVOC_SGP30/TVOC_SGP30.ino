@@ -30,14 +30,6 @@ void loop() {
   tvoc_pub.publish(&tvoc_msg);
   eco2_msg.data = sgp.eCO2;
   eco2_pub.publish(&eco2_msg);
-  if ( millis() - last_sound_play > 30000 && sgp.eCO2 > 1000 ) {
-    sound_msg.goal.sound_request.sound = -3;
-    sound_msg.goal.sound_request.command = 1;
-    sound_msg.goal.sound_request.volume = 1.0;
-    sound_msg.goal.sound_request.arg = "C O 2 concentration is high. Please change the air.";
-    sound_pub.publish(&sound_msg);
-    last_sound_play = millis();
-  }
 
   nh.spinOnce();
   delay(100);
