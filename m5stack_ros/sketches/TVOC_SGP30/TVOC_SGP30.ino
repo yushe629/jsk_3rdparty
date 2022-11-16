@@ -15,16 +15,12 @@ std_msgs::UInt16 tvoc_msg;
 ros::Publisher tvoc_pub("tvoc", &tvoc_msg);
 std_msgs::UInt16 eco2_msg;
 ros::Publisher eco2_pub("eco2", &eco2_msg);
-sound_play::SoundRequestActionGoal sound_msg;
-ros::Publisher sound_pub("sound_play/goal", &sound_msg);
-long last_sound_play = 0;
 
 void setup() {
   setupM5stackROS("M5Stack ROS TVOC SGP30");
   setupTVOCSGP30();
   nh.advertise(tvoc_pub);
   nh.advertise(eco2_pub);
-  nh.advertise(sound_pub);
 }
 
 void loop() {
@@ -44,5 +40,5 @@ void loop() {
   }
 
   nh.spinOnce();
-  delay(1000);
+  delay(100);
 }
